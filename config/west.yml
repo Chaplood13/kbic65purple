@@ -1,14 +1,24 @@
+
 manifest:
   defaults:
     revision: v0.3
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # Additional modules containing boards/shields/custom code can be listed here as well
-    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+    - name: chaplood13
+      url-base: https://github.com/Chaplood13
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+
+    # Add your shield repository here.
+    # This expects a repository named "kbic65-shield" under https://github.com/Chaplood13/kbic65-shield
+    # and will clone it into the workspace at app/boards/shields/KBIC65 so ZMK can discover the shield.
+    - name: kbic65-shield
+      remote: chaplood13
+      revision: main
+      path: app/boards/shields/KBIC65
+
   self:
     path: config
